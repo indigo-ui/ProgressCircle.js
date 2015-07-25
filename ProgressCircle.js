@@ -37,6 +37,7 @@
         this.horizLineLength = params.horizLineLength || 10;
         this.infoLineAngleInterval = params.infoLineAngleInterval || Math.PI / 8;
         this.infoLineBaseAngle = params.infoLineBaseAngle || Math.PI / 6;
+        this.rotateAngle = params.rotateAngle || 0;
 
         this.context = this.canvas.getContext('2d');
 
@@ -69,6 +70,7 @@
                 arcWidth: this.arcWidth,
                 infoLineLength: this.infoLineLength,
                 horizLineLength: this.horizLineLength,
+                rotateAngle: params.rotateAngle || 0,
 
                 id: this.circles.length,
                 fillColor: params.fillColor,
@@ -169,6 +171,7 @@
         this.horizLineLength = params.horizLineLength || 50;
         this.infoListener = params.infoListener;
         this.infoLineAngle = params.infoLineAngle;
+        this.rotateAngle = params.rotateAngle;
 
         this.outerRadius = this.innerRadius + this.arcWidth;
 
@@ -229,7 +232,7 @@
         _draw: function() {
             var ctx = this.context,
 
-                ANGLE_OFFSET = -Math.PI / 2,
+                ANGLE_OFFSET = (-90 + this.rotateAngle) * Math.PI / 180,
 
                 startAngle = 0 + ANGLE_OFFSET,
                 endAngle= startAngle + this.progress * Math.PI * 2,
